@@ -1,5 +1,4 @@
 import { db } from "@vercel/postgres";
-import Link from "next/link";
 
 export default async function Exercises() {
   const { rows } = await db.sql`SELECT * FROM exercises;`;
@@ -14,10 +13,6 @@ export default async function Exercises() {
 
   return (
     <>
-      <Link href="/" className="text-2xl m-4">
-        Lifterson
-      </Link>
-
       <form action={addExercise}>
         <input
           type="text"
