@@ -1,26 +1,19 @@
 import AddExercise from "@/components/AddExercise";
 import Exercise from "@/components/Excercise";
-
-async function getData() {
-  const res = await fetch("https://cat-fact.herokuapp.com/facts");
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-}
+import Link from "next/link";
 
 export default async function Home() {
-  const data = await getData();
-
   return (
     <>
-      <h1 className="text-2xl m-4">Lifterson</h1>
+      <Link href="/" className="text-2xl m-4">
+        Lifterson
+      </Link>
       <AddExercise />
       <Exercise name="Highbar Squat" />
       <Exercise name="Bicep Curls" />
-      <p>{data[0].text}</p>
+      <Link href="/exercises" className="text-lg m-4 hover:underline">
+        Exercises
+      </Link>
     </>
   );
 }

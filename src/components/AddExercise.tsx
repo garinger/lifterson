@@ -1,4 +1,8 @@
-export default function AddExercise() {
+import { db } from "@vercel/postgres";
+
+export default async function AddExercise() {
+  const { rows } = await db.sql`SELECT * FROM exercises;`;
+
   return (
     <div className="flex justify-center mx-4 my-8">
       <select
@@ -8,9 +12,11 @@ export default function AddExercise() {
         <option value="default" disabled>
           Select an exercise
         </option>
-        <option value="Bench">Bench</option>
-        <option value="Bicep Curls">Bicep Curls</option>
-        <option value="Highbar Squat">Highbar Squat</option>
+        {rows.map((exercise) => (
+          <option key={exercise.id} value={exercise.name}>
+            {exercise.name}
+          </option>
+        ))}
       </select>
       <button className="btn btn-lg mx-4">Add</button>
     </div>
