@@ -8,6 +8,7 @@ export default async function Home() {
       <Link href="/" className="text-2xl m-4">
         Lifterson
       </Link>
+      {/* @ts-expect-error Server Component */}
       <AddExercise />
       <Exercise name="Highbar Squat" />
       <Exercise name="Bicep Curls" />
